@@ -1,8 +1,10 @@
+from pathlib import Path
 from dotenv import load_dotenv
 import os
 import requests
 from requests.exceptions import HTTPError, Timeout, ConnectionError, RequestException
 import json
+
 
 load_dotenv()
 Hanoi_OpenWeather_ID = 1581130
@@ -11,7 +13,7 @@ Hanoi_OpenWeather_ID = 1581130
 def get_current_weather_data_from_open_weather_map(city_id=Hanoi_OpenWeather_ID):
     """ Returns current weather data by city id (Ha Noi by default)
     """
-    base_url = "https://openweathermap.org"
+    base_url = "http://api.openweathermap.org/data/2.5/weather"
     api_key = os.getenv("OPEN_WEATHER_API_KEY")
 
     query_params = {
@@ -54,10 +56,10 @@ def write_weather_data_in_json_file(json_data: dict | None) -> str | None:
     if not json_data or 'dt' not in json_data:
         print("[WARNING] No valid data to write this file")
         return None
-    cache_dir = "data"
-    os.makedirs(cache_dir, exist_ok=True)
+    cache_dir = Path("data")/"raw_data"
+    os.makedirs(cache_dir, parents=True, exist_ok=True)
 
-    file_name = f"data{json_data['dt']}.json"
+    file_name = f"data_{json_data['dt']}.json"
     file_path = os.path.join(cache_dir, file_name)
 
     try:
