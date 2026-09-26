@@ -23,6 +23,8 @@ config = {
 def db_connect():
     try:
         db_connection = mysql.connector.connect(** config)
+        print("Database connection established")
+        return db_connection
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
             print("Something is wrong with your user name or password")
@@ -30,8 +32,17 @@ def db_connect():
             print("Database does not exist")
         else:
             print(err)
-    else:
-        return db_connection
+        return None
 
-def db_disconnect(db_connection):
-    db_connection.close()
+
+def db_disconnect(db_connection, cursor = None):
+    if cursor:
+        try:
+            cursor.close()
+        except mysql.connector.Error:
+            pass
+
+    if db_connection and db_connection.is_connected():
+        db_connection.close()
+        print("Database connection closed")
+
