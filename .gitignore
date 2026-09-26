@@ -1,0 +1,26 @@
+# Python venv
+.venv/
+venv/
+ENV/
+env/
+
+# Pycharm configuration
+.idea/
+
+# Security Config
+.env/
+config/*.ini
+config/*.yaml
+config/*.json
+
+# Python Buffer
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Log, Temporary data
+data/input/
+data/output/
+*.log
+.DS_Store
