@@ -32,3 +32,6 @@ def db_connect():
             print(err)
     else:
         return db_connection
+
+def db_disconnect(db_connection):
+    db_connection.close()
