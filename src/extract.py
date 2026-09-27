@@ -29,15 +29,6 @@ RETRY_BACKOFF_SECOND = 2
 
 
 # Config Log
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-    handlers=[
-        logging.FileHandler(LOG_FILE),
-        logging.StreamHandler()
-    ]
-)
 logger = logging.getLogger(__name__)
 
 if not API_KEY:
@@ -120,4 +111,6 @@ def execute_extract_pipeline() -> Path | None:
 
 
 if __name__ == "__main__":
+    from config.logging_config import setup_logging
+    setup_logging()
     execute_extract_pipeline()
