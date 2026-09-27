@@ -3,13 +3,11 @@ from mysql.connector import errorcode
 import os
 from dotenv import load_dotenv
 import logging
-from typing import Optional
 
-from mysql.connector.abstracts import MySQLConnectionAbstract
+
 
 load_dotenv()
 logger = logging.getLogger(__name__)
-connection: Optional[MySQLConnectionAbstract]
 
 #Declare env variables
 MYSQL_USER=os.getenv("MYSQL_USER")
@@ -20,7 +18,7 @@ MYSQL_DATABASE=os.getenv("MYSQL_DATABASE")
 DB_CONFIG = {
     'user': MYSQL_USER,
     'password': MYSQL_PASSWORD,
-    'host': MYSQL_USER,
+    'host': MYSQL_HOST,
     'database': MYSQL_DATABASE,
     'raise_on_warnings': True
 }
@@ -89,3 +87,19 @@ class DBConnection:
 
     def __exit__(self, exc_type, exc_val, exc_tb) -> None:
         db_disconnect(self.conn)
+
+
+def check_config() -> None:
+    with DBConnection() as conn:
+        if conn is None:
+            return None
+        cursor = conn.cursor()
+        cursor.close()
+
+    return None
+
+if __name__ == "__main__":
+    from config.logging_config import setup_logging
+    setup_logging()
+    logger = logging.getLogger(__name__)
+    check_config()

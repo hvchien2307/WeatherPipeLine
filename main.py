@@ -4,6 +4,7 @@ from config.logging_config import setup_logging
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 from config.logging_config import setup_logging
 setup_logging()
+from config.database_config import check_config
 
 import logging
 logger = logging.getLogger(__name__)
@@ -11,7 +12,8 @@ from src import extract
 
 def main():
     setup_logging()
-    extract.execute_extract_pipeline()
+    check_config()
+    # extract.execute_extract_pipeline()
     return
 
 # Press the green button in the gutter to run the script.
