@@ -12,8 +12,8 @@ from src import extract
 
 def main():
     setup_logging()
-    check_config()
-    # extract.execute_extract_pipeline()
+    # check_config()
+    extract.execute_extract_pipeline()
     return
 
 # Press the green button in the gutter to run the script.
