@@ -31,3 +31,6 @@ data/
 
 # SQL
 *.sql
+
+# Note: The for my note why doing this project and learnt new skills
+note/
