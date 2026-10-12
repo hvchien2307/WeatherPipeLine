@@ -20,7 +20,7 @@ DB_CONFIG = {
     'password': MYSQL_PASSWORD,
     'host': MYSQL_HOST,
     'database': MYSQL_DATABASE,
-    'raise_on_warnings': True
+    'raise_on_warnings': False
 }
 
 

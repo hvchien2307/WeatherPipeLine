@@ -1,19 +1,21 @@
 # This is a sample Python script.
-from config.logging_config import setup_logging
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-from config.logging_config import setup_logging
-setup_logging()
-from config.database_config import check_config
+
 
 import logging
+from pathlib import Path
 logger = logging.getLogger(__name__)
 from src import extract
+from src import transform
+from src import load
 
 def main():
+    from config.logging_config import setup_logging
     setup_logging()
-    # check_config()
-    extract.execute_extract_pipeline()
+    path = extract.execute_extract_pipeline()
+    data = transform.execute_transform_pipeline(path)
+    load. execute_load_pipeline(data)
     return
 
 # Press the green button in the gutter to run the script.

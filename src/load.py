@@ -9,17 +9,17 @@ logger = logging.getLogger(__name__)
 
 UPSERT_INTO_CITIES = """
     INSERT INTO cities (city_id, city_name, country, lat, lon, timezone_offset)
-        VALUES (%s, %s, %s, %s, %s, %s)
+        VALUES (%s, %s, %s, %s, %s, %s) AS newcity
         ON DUPLICATE KEY UPDATE
-            city_name = VALUES(city_name),
-            country = VALUES(country),
-            lat = VALUES(lat),
-            lon = VALUES(lon),
-            timezone_offset = VALUES(timezone_offset)
+            city_name = newcity.city_name,
+            country = newcity.country,
+            lat = newcity.lat,
+            lon = newcity.lon,
+            timezone_offset = newcity.timezone_offset
 """
 
 INSERT_INTO_WEATHER_READING = """
-    INSERT IGNORE INTO weather_reading (city_id, temp, feels_like, temp_min, temp_max, pressure, humidity,
+    INSERT IGNORE INTO weather_readings (city_id, temp, feels_like, temp_min, temp_max, pressure, humidity,
     sea_level, grnd_level,
     wind_speed, wind_deg, wind_gust,
     cloud_pct, visibility,
