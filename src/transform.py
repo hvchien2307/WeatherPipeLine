@@ -6,9 +6,11 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-def convert_json_to_dict(filepath) -> dict | None:
+def convert_json_to_dict(filepath: Path | None) -> dict | None:
     """Convert JSON file to Python Dict
     """
+    if filepath is None:
+        return None
 
     try:
         with open(filepath, 'r', encoding="utf-8") as json_file:
