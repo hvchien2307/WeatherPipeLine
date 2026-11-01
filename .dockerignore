@@ -1,0 +1,50 @@
+# Python venv
+.venv/
+venv/
+ENV/
+env/
+
+#Personal env varibales
+.env
+
+# Pycharm configuration
+.idea/
+
+# Security Config
+.env/
+config/*.ini
+config/*.yaml
+config/*.json
+
+# Python Buffer
+**/__pycache__
+**/*.pyc
+**/*.pyo
+*/*.pyd
+.pytest_cache/
+
+# Log, Temporary data
+data/input/
+data/output/
+*.log
+.DS_Store
+
+#Pipeline Data
+data/
+
+# SQL
+*.sql
+
+# Note: The for my note why doing this project and learnt new skills
+note/
+
+
+#GIt
+.gitignore
+.git
+
+#docker files and docs
+Dockerfile
+docker-compose.yml
+.dockerignore
+README.md
